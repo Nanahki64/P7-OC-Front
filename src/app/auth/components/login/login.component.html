@@ -1,0 +1,27 @@
+<div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="error">{{error}}</div>
+      <div>
+        <mat-icon matSuffix class="auth-page-icon">email</mat-icon>
+        <input type="email" formControlName="email" class="form-control auth-control" id="email" placeholder="Email">
+      </div>
+
+      <div>
+        <mat-icon matSuffix class="auth-page-icon">vpn_key</mat-icon>
+        <input type="password" formControlName="password" class="form-control auth-control" id="password" placeholder="Password" />
+      </div>
+
+      <div>
+        <div>
+          <a routerLink="/authentication/forgot-password">Mot de passe oublié ?</a>
+        </div>
+      </div>
+
+      <div>
+        <button mat-flat-button color="primary" type="submit">
+          Se connecter
+        </button>
+      </div>
+
+    </form>
+  </div>
