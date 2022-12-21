@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,25 +14,25 @@ export class LoginComponent implements OnInit {
   submitted = false;
   error = '';
   hide = true;
+
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
       password: ['', Validators.required]
-    })
+    });
   }
 
   onSubmit() {
     this.submitted = true;
-    this.error = '';
-    if (this.loginForm.invalid) {
-      this.error = 'Mot de passe et email invalide !';
-      return;
-    } else {
-      this.authService.login(this.loginForm).subscribe(() => {
+    try {
+      this.authService.login(this.loginForm).subscribe((dataUserLogInfo) => {
+        this.authService.getUserLogInfo(dataUserLogInfo);
         this.router.navigateByUrl('landing-page');
       });
+    } catch {
+      this.error = 'Une erreur est survenue.';
     }
   }
 }
