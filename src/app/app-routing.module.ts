@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreatePostComponent } from './shared/create-post/create-post.component';
 import { LandingPageComponent } from './shared/landing-page/landing-page.component';
 
 const routes: Routes = [
-  { path: 'landing-page', component: LandingPageComponent} 
+  { path: 'landing-page', component: LandingPageComponent},
 ];
 
 @NgModule({

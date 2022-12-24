@@ -9,6 +9,7 @@ import { LandingPageComponent } from './shared/landing-page/landing-page.compone
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { CreatePostComponent } from './shared/create-post/create-post.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CreatePostComponent } from './shared/create-post/create-post.component'
     AuthModule,
     NoopAnimationsModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
