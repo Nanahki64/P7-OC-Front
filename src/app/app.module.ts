@@ -10,12 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { CreatePostComponent } from './shared/create-post/create-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DisplayPostsComponent } from './shared/display-posts/display-posts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    DisplayPostsComponent
   ],
   imports: [
     BrowserModule,

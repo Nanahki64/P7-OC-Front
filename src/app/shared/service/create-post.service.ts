@@ -13,12 +13,10 @@ export class CreatePostService {
 
   createPost(form: FormGroup) {
     let formdata = new FormData();
-    formdata.append('image' ,form.get('image')?.value);
+    formdata.append('image' ,form.get('image')!.value);
+    formdata.append('title', form.get('title')!.value);
+    formdata.append('content', form.get('content')!.value);
     
-    return this.http.post<any>(this.createPostUrl, {
-      title: form.controls['title'].value,
-      content: form.controls['content'].value,
-      image: formdata.get('image')
-    });
+    return this.http.post<any>(this.createPostUrl, formdata);
   }
 }

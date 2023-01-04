@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DisplayPostsService } from '../service/display-posts.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  posts: Array<Object> = [];
+
+  constructor(private displayPostService: DisplayPostsService) { }
 
   ngOnInit(): void {
+    this.displayPostService.getPosts().subscribe((postsData) => {
+      this.posts = postsData.posts;
+    });
   }
 
 }

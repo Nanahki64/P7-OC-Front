@@ -1,0 +1,7 @@
+<div class="body">
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <img src={{post.imageUrl}} alt="image">
+    <button type="button" (click)="addLike()">Likes: {{ postlikes }}</button>
+    <button type="button" (click)="deleteLike()">Dislike</button>
+</div>

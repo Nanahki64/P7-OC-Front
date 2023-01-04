@@ -3,4 +3,6 @@
     <div class="create-post">
         <app-create-post></app-create-post>
     </div>
+    <!-- ngfor sur component-->
+    <app-display-posts *ngFor="let post of posts" [post]="post"></app-display-posts>
 </div>
