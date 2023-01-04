@@ -10,6 +10,7 @@ export class DisplayPostsService {
   private retrieveLikesUrl = environment.apiUrl + '/api/likes/';
   private addLikeUrl = environment.apiUrl + '/api/likes/';
   private deleteLikeUrl = environment.apiUrl + '/api/likes/';
+  private getPostCommentUrl = environment.apiUrl + '/api/comment/post';
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +26,7 @@ export class DisplayPostsService {
     return this.http.post<any>(this.addLikeUrl, {
       postId: postId,
       likeType: likeType
-    }).subscribe();
+    });
   }
 
   deleteLike(postId: string) {
@@ -38,5 +39,11 @@ export class DisplayPostsService {
       }
     }
     return this.http.delete(this.deleteLikeUrl, options).subscribe();
+  }
+
+  getPostComment(postId: string) {
+    return this.http.post<any>(this.getPostCommentUrl, {
+      postId: postId
+    });
   }
 }

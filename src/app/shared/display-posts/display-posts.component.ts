@@ -15,10 +15,15 @@ export class DisplayPostsComponent implements OnInit {
     this.displayPostService.getLikes(this.post.id).subscribe((likes) => {
       this.postlikes = likes.likes;
     });
+    this.displayPostService.getPostComment(this.post.id).subscribe((d) => {
+      console.log(d);
+    });
   }
 
   addLike() {
-    this.displayPostService.addLike(this.post.id, 1);
+    this.displayPostService.addLike(this.post.id, 1).subscribe((d) => {
+      this.postlikes = d.count;
+    });
   }
 
   deleteLike() {
