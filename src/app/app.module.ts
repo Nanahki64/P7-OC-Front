@@ -11,13 +11,15 @@ import { CoreModule } from './core/core.module';
 import { CreatePostComponent } from './shared/create-post/create-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DisplayPostsComponent } from './shared/display-posts/display-posts.component';
+import { PostCommentComponent } from './shared/post-comment/post-comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     CreatePostComponent,
-    DisplayPostsComponent
+    DisplayPostsComponent,
+    PostCommentComponent
   ],
   imports: [
     BrowserModule,
