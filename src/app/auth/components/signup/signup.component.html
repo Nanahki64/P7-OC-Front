@@ -1,50 +1,80 @@
-<div class="form-container">
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <div>
-        <mat-icon matSuffix class="auth-page-icon">face</mat-icon>
-        <input formControlName="firstName" id="firstName" placeholder="Nom" />
-        <div *ngIf="submitted">
-          <p *ngIf="this.signupForm.controls['firstName'].hasError('required')">Nom requis</p>
-          <p *ngIf="this.signupForm.controls['firstName'].hasError('pattern')">Nom invalide</p>
-        </div>
-      </div>
-
-      <div>
-        <mat-icon matSuffix class="auth-page-icon">face</mat-icon>
-        <input formControlName="lastName" id="lastName" placeholder="Prénom" />
-        <div *ngIf="submitted">
-          <p *ngIf="this.signupForm.controls['lastName'].hasError('required')">Prénom requis</p>
-          <p *ngIf="this.signupForm.controls['lastName'].hasError('pattern')">Prénom invalide</p>
-        </div>
-      </div>
-
-      <div>
-        <mat-icon matSuffix class="auth-page-icon">email</mat-icon>
-        <input type="email" formControlName="email" id="email" placeholder="Email">
-        <div *ngIf="submitted">
-          <p *ngIf="this.signupForm.controls['email'].hasError('required')">Email requis</p>
-          <p *ngIf="this.signupForm.controls['email'].hasError('pattern')">Email invalide</p>
-        </div>
-      </div>
+<div class="container">
   
-      <div>
-        <mat-icon matSuffix class="auth-page-icon">vpn_key</mat-icon>
-        <input type="password" formControlName="password" id="password" placeholder="Mot de passe" />.
-        <div *ngIf="submitted">
-          <p *ngIf="this.signupForm.controls['password'].hasError('required')">Mot de passe requis</p>
-          <p *ngIf="this.signupForm.controls['password'].hasError('pattern')">Mot de passe trop faible</p>
+  <div class="form-container">
+    
+    <div class="form-card">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+        <div class="flex-center">
+          <mat-form-field appearance="fill" matNativeControl>
+            <mat-icon matSuffix class="auth-page-icon">face</mat-icon>
+            <input matInput type="text" formControlName="firstName" class="form-control auth-control" id="firstName" placeholder="Nom">
+            <mat-error *ngIf="submitted">
+              <p *ngIf="this.signupForm.controls['firstName'].hasError('required')">*Nom requis</p>
+              <p *ngIf="this.signupForm.controls['firstName'].hasError('pattern')">*Nom invalide</p>
+            </mat-error>
+          </mat-form-field>
         </div>
-      </div>
+        
+        <div class="flex-center">
+          <mat-form-field appearance="fill" matNativeControl>
+            <mat-icon matSuffix class="auth-page-icon">face</mat-icon>
+            <input matInput type="text" formControlName="lastName" class="form-control auth-control" id="lastName" placeholder="Prénom">
+            <mat-error *ngIf="submitted">
+              <p *ngIf="this.signupForm.controls['lastName'].hasError('required')">*Prénom requis</p>
+              <p *ngIf="this.signupForm.controls['lastName'].hasError('pattern')">*Prénom invalide</p>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="flex-center">
+          <mat-form-field appearance="fill" matNativeControl>
+            <mat-icon matSuffix class="auth-page-icon">email</mat-icon>
+            <input matInput type="email" formControlName="email" class="form-control auth-control" id="email" placeholder="Email">
+            <mat-error *ngIf="submitted">
+              <p *ngIf="this.signupForm.controls['email'].hasError('required')">*Email requis</p>
+              <p *ngIf="this.signupForm.controls['email'].hasError('pattern')">*Email invalide</p>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="flex-center">
+          <mat-form-field appearance="fill" matNativeControl>
+            <mat-icon matSuffix class="auth-page-icon">vpn_key</mat-icon>
+            <input matInput type="password" formControlName="password" class="form-control auth-control" id="password" placeholder="Mot de passe">
+            <mat-error *ngIf="submitted">
+              <p *ngIf="this.signupForm.controls['password'].hasError('required')">*Mot de passe requis</p>
+              <p *ngIf="this.signupForm.controls['password'].hasError('pattern')">*Mot de passe trop faible</p>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="flex-center login-button">
+          <button mat-raised-button color="warn" type="submit">S'enregistrer</button>
+        </div>
+        
+        <div>
 
-      <div>
-        <button type="submit">S'enregistrer</button>
-      </div>
+        </div>
 
-      <div>
-        <p>Déjà inscrit ? 
-          <a routerLink=""> se connecter </a> 
-        </p>
-      </div>
-  
-    </form>
+        <div class="login-links-container">
+          <div class="login-links">
+            <p>Déjà inscrit ? 
+              <a routerLink=""> se connecter </a> 
+            </p>
+          </div>
+        </div>
+        
+      </form>
+
+    </div>
+
+    <img src="../../../../assets/icon-left-font.svg" alt="Logo groupomania" class="login-logo">
+
   </div>
+  <section class="wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 255">
+      <path fill="#FFD7D7" fill-opacity="1" d="M0,128L60,160C120,192,240,256,360,250.7C480,245,600,171,720,122.7C840,75,960,53,1080,69.3C1200,85,1320,139,1380,165.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+    </svg>
+  </section>
+</div>
