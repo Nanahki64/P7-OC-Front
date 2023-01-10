@@ -36,6 +36,10 @@ export class DisplayPostsComponent implements OnInit {
     this.displayPostService.deleteLike(this.post.id);
   }
 
+  deletPost() {
+    this.displayPostService.deletePost(this.post.id);
+  }
+
   createComment() {
     this.router.navigate(['/post-comment/' + this.post.id]);
   }

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class DisplayPostsService {
   private retrievePostUrl = environment.apiUrl + '/api/post';
   private getOnePostUrl = environment.apiUrl + '/api/post/';
+  private deletePostUrl = environment.apiUrl + '/api/post/';
 
   private retrieveLikesUrl = environment.apiUrl + '/api/likes/';
   private addLikeUrl = environment.apiUrl + '/api/likes/';
@@ -47,6 +48,10 @@ export class DisplayPostsService {
       }
     }
     return this.http.delete(this.deleteLikeUrl, options).subscribe();
+  }
+
+  deletePost(postId: string) {
+    return this.http.delete(this.deletePostUrl + postId).subscribe();
   }
 
   getPostComment(postId: string) {
