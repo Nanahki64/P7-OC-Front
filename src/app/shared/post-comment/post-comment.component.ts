@@ -45,6 +45,6 @@ export class PostCommentComponent implements OnInit {
   }
 
   onSubmit() {
-    this.displayPostService.createComment(this.commentForm.controls['comment'].value, this.postId, 'test@test.com');
+    this.displayPostService.createComment(this.commentForm.controls['comment'].value, this.postId);
   }
 }

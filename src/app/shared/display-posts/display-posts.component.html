@@ -1,7 +1,9 @@
 <div class="body">
     <h1>{{ post.title }}</h1>
+    <h2>{{ post.author.firstName }}, {{ post.author.lastName }}</h2>
     <p>{{ post.content }}</p>
     <img src={{post.imageUrl}} alt="image">
+    <button *ngIf="isAdminOrAuthor" type="button">Supprimer</button>
     <button type="button" (click)="addLike()">Likes: {{ postlikes }}</button>
     <button type="button" (click)="deleteLike()">Dislike</button>
     <button type="button" (click)="createComment()">Comment: {{ postComment }}</button>

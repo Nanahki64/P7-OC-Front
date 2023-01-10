@@ -55,11 +55,10 @@ export class DisplayPostsService {
     });
   }
 
-  createComment(comment: string, postId: string, author: string) {
+  createComment(comment: string, postId: string) {
     return this.http.post<any>(this.createCommentUrl, {
       comment: comment,
       id: postId,
-      email: author
     }).subscribe();
   }
 }

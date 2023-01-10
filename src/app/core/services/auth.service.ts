@@ -33,6 +33,19 @@ export class AuthService {
     return window.sessionStorage.getItem('token') || '';
   }
 
+  getUserId() {
+    return window.sessionStorage.getItem('userId');
+  }
+
+  getRole() {
+    let role = window.sessionStorage.getItem('isAdmin');
+    if(role == 'true') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   signup(form: FormGroup) {
     return this.http.post<any>(this.signupUrl, {
       firstName: form.controls['firstName'].value,
