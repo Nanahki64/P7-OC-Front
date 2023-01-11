@@ -37,7 +37,7 @@ export class DisplayPostsComponent implements OnInit {
   }
 
   deletPost() {
-    this.displayPostService.deletePost(this.post.id);
+    this.displayPostService.sendDeletePostUpdate(this.post.id);
   }
 
   createComment() {
@@ -47,7 +47,6 @@ export class DisplayPostsComponent implements OnInit {
   isAdminOrIsAuthor() {
     let userId = this.authService.getUserId();
     let role = this.authService.getRole();
-    console.log(role);
     
     if(this.post.authorId === userId || role == true) {
       this.isAdminOrAuthor = true;

@@ -16,6 +16,20 @@ export class LandingPageComponent implements OnInit {
     this.displayPostService.getPosts().subscribe((postsData) => {
       this.posts = postsData.posts;
     });
+    this.displayPostService.receiveDisplayPostUpdate().subscribe((displayPostToUpdate) => {
+      if(displayPostToUpdate) {
+        this.displayPostService.getPosts().subscribe((post) => {
+          this.posts = post.posts;
+        });
+      }
+    });
+    this.displayPostService.receiveDeletePostUpdate().subscribe((displayPostToUpdate) => {
+      this.displayPostService.deletePost(displayPostToUpdate).subscribe(() => {
+        this.displayPostService.getPosts().subscribe((post) => {
+          console.log('this',this.posts, 'post',post.posts);
+          this.posts = post.posts;
+        });
+      });
+    });
   }
-
 }

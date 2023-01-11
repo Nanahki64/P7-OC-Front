@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,9 @@ export class DisplayPostsService {
 
   private getPostCommentUrl = environment.apiUrl + '/api/comment/post';
   private createCommentUrl = environment.apiUrl + '/api/comment/';
+
+  private displayPostUpdate = new Subject<boolean>();
+  private deletePostUpdate = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
@@ -51,7 +55,7 @@ export class DisplayPostsService {
   }
 
   deletePost(postId: string) {
-    return this.http.delete(this.deletePostUrl + postId).subscribe();
+    return this.http.delete(this.deletePostUrl + postId);
   }
 
   getPostComment(postId: string) {
@@ -65,5 +69,21 @@ export class DisplayPostsService {
       comment: comment,
       id: postId,
     }).subscribe();
+  }
+
+  sendDisplayPostUpdate() {
+    this.displayPostUpdate.next(true);
+  }
+
+  receiveDisplayPostUpdate(): Observable<boolean> {
+    return this.displayPostUpdate.asObservable();
+  }
+
+  sendDeletePostUpdate(posts: string) {
+    this.deletePostUpdate.next(posts);
+  }
+
+  receiveDeletePostUpdate(): Observable<string> {
+    return this.deletePostUpdate.asObservable();
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreatePostService } from 'src/app/shared/service/create-post.service'
+import { DisplayPostsService } from '../service/display-posts.service';
 
 @Component({
   selector: 'app-create-post',
@@ -13,7 +14,7 @@ export class CreatePostComponent implements OnInit {
   submitted = false;
   error = '';
 
-  constructor(private formBuilder: FormBuilder, private createPostService: CreatePostService) { }
+  constructor(private formBuilder: FormBuilder, private createPostService: CreatePostService, private displayPostService: DisplayPostsService) { }
 
   ngOnInit(): void {
     this.postForm = this.formBuilder.group({
@@ -36,7 +37,9 @@ export class CreatePostComponent implements OnInit {
       this.error = 'Un titre et un contenue ou une image sont requis'
     }
     try {
-    this.createPostService.createPost(this.postForm).subscribe();
+    this.createPostService.createPost(this.postForm).subscribe(() => {
+      this.displayPostService.sendDisplayPostUpdate();
+    });
     } catch {
       this.error = 'Une erreur est survenue.';
     }
