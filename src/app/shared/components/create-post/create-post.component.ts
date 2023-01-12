@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreatePostService } from 'src/app/shared/service/create-post.service'
-import { DisplayPostsService } from '../service/display-posts.service';
+import { DisplayPostsService } from '../../service/display-posts.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({

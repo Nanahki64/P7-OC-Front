@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DisplayPostsService } from '../service/display-posts.service';
+import { DisplayPostsService } from '../../service/display-posts.service';
 
 @Component({
   selector: 'app-landing-page',

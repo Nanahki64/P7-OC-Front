@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #4E5166;
+    box-shadow: 10px 2px 30px #4E5166;
+}
+.crop-logo {
+    margin: 1em;
+    width: 12%;
+}
+.logout-button {
+    margin: 1em;
+}

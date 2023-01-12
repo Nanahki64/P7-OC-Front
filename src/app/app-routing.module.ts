@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPageComponent } from './shared/landing-page/landing-page.component';
-import { ModifyingPostComponent } from './shared/modifying-post/modifying-post.component';
-import { PostCommentComponent } from './shared/post-comment/post-comment.component';
+import { LandingPageComponent } from './shared/components/landing-page/landing-page.component';
+import { PostCommentComponent } from './shared/components/post-comment/post-comment.component';
+import { ModifyingPostComponent } from './shared/components/modifying-post/modifying-post.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent},

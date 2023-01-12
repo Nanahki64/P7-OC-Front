@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModifyingPostService } from '../service/modifying-post.service';
-import { DisplayPostsService } from '../service/display-posts.service';
+import { ModifyingPostService } from '../../service/modifying-post.service';
+import { DisplayPostsService } from '../../service/display-posts.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
