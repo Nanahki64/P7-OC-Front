@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CreatePostDialogComponent } from './shared/create-post-dialog/create-post-dialog.component'
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
     CreatePostComponent,
     DisplayPostsComponent,
     PostCommentComponent,
-    ModifyingPostComponent
+    ModifyingPostComponent,
+    CreatePostDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

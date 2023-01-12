@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreatePostService } from 'src/app/shared/service/create-post.service'
 import { DisplayPostsService } from '../service/display-posts.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-post',
@@ -13,8 +14,9 @@ export class CreatePostComponent implements OnInit {
   postForm!: FormGroup;
   submitted = false;
   error = '';
+  imageSubmitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private createPostService: CreatePostService, private displayPostService: DisplayPostsService) { }
+  constructor(private formBuilder: FormBuilder, private createPostService: CreatePostService, private displayPostService: DisplayPostsService, private matDialogRef: MatDialogRef<CreatePostComponent>) { }
 
   ngOnInit(): void {
     this.postForm = this.formBuilder.group({
@@ -28,6 +30,7 @@ export class CreatePostComponent implements OnInit {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
       this.postForm.get('image')?.setValue(file);
+      this.imageSubmitted = true;
     }
   }
 
@@ -39,10 +42,15 @@ export class CreatePostComponent implements OnInit {
     try {
     this.createPostService.createPost(this.postForm).subscribe(() => {
       this.displayPostService.sendDisplayPostUpdate();
+      this.onModalClose();
     });
     } catch {
       this.error = 'Une erreur est survenue.';
     }
+  }
+
+  onModalClose() {
+    this.matDialogRef.close();
   }
 
 }

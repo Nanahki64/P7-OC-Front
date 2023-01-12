@@ -1,8 +1,7 @@
 <div class="body">
     <h1>Landing Page</h1>
     <div class="create-post">
-        <app-create-post></app-create-post>
+        <app-create-post-dialog></app-create-post-dialog>
     </div>
-    <!-- ngfor sur component-->
     <app-display-posts *ngFor="let post of posts" [post]="post"></app-display-posts>
 </div>
