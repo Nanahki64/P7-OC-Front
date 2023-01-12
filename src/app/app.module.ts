@@ -13,6 +13,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DisplayPostsComponent } from './shared/display-posts/display-posts.component';
 import { PostCommentComponent } from './shared/post-comment/post-comment.component';
 import { ModifyingPostComponent } from './shared/modifying-post/modifying-post.component';
+import { MatButtonModule } from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { ModifyingPostComponent } from './shared/modifying-post/modifying-post.c
     NoopAnimationsModule,
     HttpClientModule,
     CoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,26 +1,33 @@
 <div class="form-container">
+
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <div *ngIf="error">{{error}}</div>
-      <div>
-        <input formControlName="title" class="form-control auth-control" id="title" placeholder="Titre">
-        <div *ngIf="submitted">
-          <p *ngIf="this.postForm.controls['title'].hasError('required')">Titre requis</p>
-        </div>
-      </div>
-  
-      <div>
-        <input type="text" formControlName="content" class="form-control auth-control" id="content" placeholder="Contenue"/>
-        <div *ngIf="submitted">
-          <p *ngIf="this.postForm.controls['content'].hasError('required')">Contenue requis</p>
-        </div>
+      
+      <div class="flex-center">
+        <mat-form-field appearance="fill" matNativeControl>
+          <input matInput type="text" formControlName="title" class="form-control auth-control" id="title" placeholder="Titre">
+          <mat-error *ngIf="submitted">
+            <p *ngIf="this.postForm.controls['title'].hasError('required')">Titre requis</p>
+          </mat-error>
+        </mat-form-field>
       </div>
 
-      <div>
-        <input type="file" class="form-control auth-control" id="image" placeholder="Image" (change)="onFileSelect($event)"/>
+      <div class="flex-center">
+        <mat-form-field appearance="fill" matNativeControl>
+          <input matInput type="text" formControlName="content" class="form-control auth-control" id="content" placeholder="Contenue">
+          <mat-error *ngIf="submitted">
+            <p *ngIf="this.postForm.controls['content'].hasError('required')">Contenue requis</p>
+          </mat-error>
+        </mat-form-field>
       </div>
 
+      <button type="button" mat-icon-button matPrefix (click)="f_input.click()">
+        <mat-icon>add_photo_alternate</mat-icon>
+      </button>
+      <input type="file" hidden #f_input (change)="onFileSelect($event)"/>
+
       <div>
-        <button type="submit">Publier</button>
+        <button mat-raised-button color="warn" type="submit">Publier</button>
       </div>
     </form>
 </div>
