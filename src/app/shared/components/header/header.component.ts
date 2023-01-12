@@ -14,6 +14,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onGreeting() {
+    this.router.navigateByUrl('landing-page');
+  }
+
   onLogout() {
     this.router.navigateByUrl('');
     this.authService.logout();

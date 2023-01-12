@@ -1,3 +1,6 @@
-<div>
-    <button (click)="onOpenDialogClick()">Open dialog</button>
+<div class="post-dialog-container">
+    <mat-form-field appearance="fill" matNativeControl>
+      <mat-icon matSuffix class="add-icon" (click)="onOpenDialogClick()">library_add</mat-icon>
+        <input matInput type="text" class="form-control auth-control" placeholder="Quoi de neuf ?" (click)="onOpenDialogClick()">
+      </mat-form-field>
 </div>
