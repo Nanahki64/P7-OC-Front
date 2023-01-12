@@ -49,6 +49,10 @@ export class DisplayPostsComponent implements OnInit {
     this.router.navigate(['/post-comment/' + this.post.id]);
   }
 
+  modifyPost() {
+    this.router.navigate(['/modify-post/' + this.post.id]);
+  }
+
   isAdminOrIsAuthor() {
     let userId = this.authService.getUserId();
     let role = this.authService.getRole();

@@ -1,0 +1,30 @@
+<div class="form-container">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="error">{{error}}</div>
+      <div>
+        <input formControlName="title" class="form-control auth-control" id="title" placeholder="Titre">
+        <div *ngIf="submitted">
+          <p *ngIf="this.postForm.controls['title'].hasError('required')">Titre requis</p>
+        </div>
+      </div>
+  
+      <div>
+        <input type="text" formControlName="content" class="form-control auth-control" id="content" placeholder="Contenue"/>
+        <div *ngIf="submitted">
+          <p *ngIf="this.postForm.controls['content'].hasError('required')">Contenue requis</p>
+        </div>
+      </div>
+
+      <div>
+        <img src={{imageUrl}} alt="image">
+      </div>
+
+      <div>
+        <input type="file" class="form-control auth-control" id="image" placeholder="Image" (change)="onFileSelect($event)"/>
+      </div>
+
+      <div>
+        <button type="submit">Publier</button>
+      </div>
+    </form>
+</div>

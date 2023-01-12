@@ -12,6 +12,7 @@ import { CreatePostComponent } from './shared/create-post/create-post.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { DisplayPostsComponent } from './shared/display-posts/display-posts.component';
 import { PostCommentComponent } from './shared/post-comment/post-comment.component';
+import { ModifyingPostComponent } from './shared/modifying-post/modifying-post.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PostCommentComponent } from './shared/post-comment/post-comment.compone
     LandingPageComponent,
     CreatePostComponent,
     DisplayPostsComponent,
-    PostCommentComponent
+    PostCommentComponent,
+    ModifyingPostComponent
   ],
   imports: [
     BrowserModule,
