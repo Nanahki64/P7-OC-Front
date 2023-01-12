@@ -13,6 +13,7 @@ export class DisplayPostsComponent implements OnInit {
   postlikes!: number;
   postComment!: number;
   isAdminOrAuthor: boolean = false;
+  isLiked!: boolean;
 
   constructor(private displayPostService: DisplayPostsService, private router: Router, private authService: AuthService) { }
 
@@ -26,14 +27,18 @@ export class DisplayPostsComponent implements OnInit {
     this.isAdminOrIsAuthor();
   }
 
-  addLike() {
-    this.displayPostService.addLike(this.post.id, 1).subscribe((d) => {
-      this.postlikes = d.count;
-    });
-  }
-
-  deleteLike() {
-    this.displayPostService.deleteLike(this.post.id);
+  postLike() {
+    if(!this.isLiked) {
+      this.displayPostService.addLike(this.post.id, 1).subscribe((d) => {
+        this.postlikes = d.count;
+        this.isLiked = d.alreadyLiked;
+      });
+    } else {
+      this.displayPostService.deleteLike(this.post.id).subscribe((d) => {
+        this.postlikes = d.count;
+        this.isLiked = d.alreadyLiked;
+      });
+    }
   }
 
   deletPost() {

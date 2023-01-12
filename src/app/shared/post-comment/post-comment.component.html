@@ -2,8 +2,7 @@
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
     <img src={{post.imageUrl}} alt="image">
-    <button type="button" (click)="addLike()">Likes: {{ postlikes }}</button>
-    <button type="button" (click)="deleteLike()">Dislike</button>
+    <button type="button" (click)="postLike()">Likes: {{ postlikes }}</button>
     <div class="form-container">
         <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
           <div *ngIf="error">{{error}}</div>

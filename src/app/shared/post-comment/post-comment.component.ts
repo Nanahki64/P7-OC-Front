@@ -15,6 +15,7 @@ export class PostCommentComponent implements OnInit {
   commentForm!: FormGroup;
   error = '';
   submitted = false;
+  isLiked!: boolean;
 
   constructor(private displayPostService: DisplayPostsService, private router: ActivatedRoute, private formBuilder: FormBuilder) { }
 
@@ -34,10 +35,18 @@ export class PostCommentComponent implements OnInit {
     });
   }
 
-  addLike() {
-    this.displayPostService.addLike(this.postId, 1).subscribe((d) => {
-      this.postlikes = d.count;
-    });
+  postLike() {
+    if(!this.isLiked) {
+      this.displayPostService.addLike(this.post.id, 1).subscribe((d) => {
+        this.postlikes = d.count;
+        this.isLiked = d.alreadyLiked;
+      });
+    } else {
+      this.displayPostService.deleteLike(this.post.id).subscribe((d: any) => {
+        this.postlikes = d.count;
+        this.isLiked = d.alreadyLiked;
+      })
+    }
   }
 
   deleteLike() {

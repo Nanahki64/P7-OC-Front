@@ -4,7 +4,6 @@
     <p>{{ post.content }}</p>
     <img src={{post.imageUrl}} alt="image">
     <button *ngIf="isAdminOrAuthor" type="button" (click)="deletPost()">Supprimer</button>
-    <button type="button" (click)="addLike()">Likes: {{ postlikes }}</button>
-    <button type="button" (click)="deleteLike()">Dislike</button>
+    <button type="button" (click)="postLike()">Likes: {{ postlikes }}</button>
     <button type="button" (click)="createComment()">Comment: {{ postComment }}</button>
 </div>

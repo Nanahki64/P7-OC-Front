@@ -51,7 +51,7 @@ export class DisplayPostsService {
         postId: postId,
       }
     }
-    return this.http.delete(this.deleteLikeUrl, options).subscribe();
+    return this.http.delete<any>(this.deleteLikeUrl, options);
   }
 
   deletePost(postId: string) {
