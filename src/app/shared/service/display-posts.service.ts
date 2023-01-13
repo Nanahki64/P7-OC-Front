@@ -15,9 +15,6 @@ export class DisplayPostsService {
   private addLikeUrl = environment.apiUrl + '/api/likes/';
   private deleteLikeUrl = environment.apiUrl + '/api/likes/';
 
-  private getPostCommentUrl = environment.apiUrl + '/api/comment/post';
-  private createCommentUrl = environment.apiUrl + '/api/comment/';
-
   private displayPostUpdate = new Subject<boolean>();
   private deletePostUpdate = new Subject<string>();
 
@@ -56,19 +53,6 @@ export class DisplayPostsService {
 
   deletePost(postId: string) {
     return this.http.delete(this.deletePostUrl + postId);
-  }
-
-  getPostComment(postId: string) {
-    return this.http.post<any>(this.getPostCommentUrl, {
-      postId: postId
-    });
-  }
-
-  createComment(comment: string, postId: string) {
-    return this.http.post<any>(this.createCommentUrl, {
-      comment: comment,
-      id: postId,
-    }).subscribe();
   }
 
   sendDisplayPostUpdate() {

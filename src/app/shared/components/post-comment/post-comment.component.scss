@@ -1,20 +1,8 @@
-.body {
+.comment-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-.head-post {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.post-card {
-    width: 29%;
-    height: 1%;
-    border-radius: 10px;
-    padding: 1em;
-    background-color: rgba(78, 81, 102, 0.08);
-    margin-bottom: 2em;
+    max-width: min-content;
 }
 .box {
     display: flex;
@@ -24,5 +12,17 @@
 }
 .box img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+mat-form-field {
+    width: 30vw;
+}
+.icon-size {
+    margin-top: 1%;
+    font-size: 1.2em;
+}
+.action-button {
+    display: flex;
+    justify-content: flex-end;
 }

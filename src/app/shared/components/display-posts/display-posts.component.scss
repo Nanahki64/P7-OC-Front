@@ -8,7 +8,9 @@
     justify-content: space-between;
 }
 .post-card {
-    width: 29%;
+    display: flex;
+    flex-direction: column;
+    max-width: 29%;
     height: 1%;
     border-radius: 10px;
     padding: 1em;

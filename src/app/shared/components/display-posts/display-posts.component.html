@@ -7,7 +7,7 @@
                     <mat-icon>more_horiz</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="onOpenDialogClick()">
+                    <button mat-menu-item (click)="onOpenDialogClickModify()">
                         <mat-icon>edit</mat-icon>
                         <span>Modifier</span>
                     </button>
@@ -27,7 +27,7 @@
             <button mat-raised-button color="warn" type="button" (click)="postLike()" class="like-button">
                 <mat-icon class="icon-size">thumb_up</mat-icon> {{ postlikes }}
             </button>
-            <button mat-raised-button color="warn" type="button" (click)="createComment()">
+            <button mat-raised-button color="warn" type="button" (click)="onOpenDialogClickComment()">
                 <mat-icon class="icon-size">comment</mat-icon> {{ postComment }}
             </button>
         </div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModifyingPostService } from '../../service/modifying-post.service';
 import { DisplayPostsService } from '../../service/display-posts.service';
-import { ActivatedRoute } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 
@@ -19,7 +18,7 @@ export class ModifyingPostComponent implements OnInit {
   imageUrl!: string;
   imageSubmitted: boolean = false;
   
-  constructor(private formBuilder: FormBuilder, private modifyingPostService: ModifyingPostService, private displayPostService: DisplayPostsService, private router: ActivatedRoute, private matDialogRef: MatDialogRef<ModifyingPostComponent>, @Inject(MAT_DIALOG_DATA) public postId: any) { }
+  constructor(private formBuilder: FormBuilder, private modifyingPostService: ModifyingPostService, private displayPostService: DisplayPostsService, private matDialogRef: MatDialogRef<ModifyingPostComponent>, @Inject(MAT_DIALOG_DATA) public postId: any) { }
   
   postForm: FormGroup = this.formBuilder.group({
     title: ['', [Validators.required]],

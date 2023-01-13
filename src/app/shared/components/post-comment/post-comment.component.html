@@ -1,27 +1,39 @@
-<app-header></app-header>
-<div class="body">
+<div class="comment-container">
+  
   <div class="head-post">
-    <h2>{{ post.author.firstName }}, {{ post.author.lastName }}</h2>
+    <h2>{{ firstName }}, {{ lastName }}</h2>
   </div>
-  <p>{{ post.content }}</p>
+  <p>{{ content }}</p>
   <div class="box">
-    <img src={{post.imageUrl}} alt="image">
+    <img src="{{ imageUrl }}" alt="image">
   </div>
-  <h2>{{ post.title }}</h2>
-  <button type="button" (click)="postLike()">Likes: {{ postlikes }}</button>
+  <h2>{{ postTitle }}</h2>
+  
   <div class="form-container">
+    
     <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-      <div *ngIf="error">{{error}}</div>
-      <div>
-        <input formControlName="comment" class="form-control auth-control" id="comment" placeholder="comment">
-        <div *ngIf="submitted">
-          <p *ngIf="this.commentForm.controls['comment'].hasError('required')">Commentaire requis</p>
-        </div>
+      
+      <div class="form-field">
+        <mat-form-field appearance="fill" matNativeControl>
+          <input matInput type="text" formControlName="comment" class="form-control auth-control" id="comment" placeholder="Commenter">
+          <mat-error *ngIf="submitted">
+            <p *ngIf="this.commentForm.controls['comment'].hasError('required')">Commentaire requis</p>
+          </mat-error>
+        </mat-form-field>
       </div>
-      <div>
-        <button type="submit">Publier</button>
+
+      <div class="action-button">
+        <button mat-raised-button color="warn" type="submit">Publier</button>
       </div>
+      
     </form>
+    
+  </div>
+
+  <div *ngFor="let item of comments">
+    <p>{{ item['comment'] }}</p>
+    <p>{{ item['author']['firstName'] }}</p>
+    <p>{{ item['author']['lastName'] }}</p>
   </div>
   
 </div>

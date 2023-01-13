@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DisplayPostsService } from '../../service/display-posts.service';
-import { ActivatedRoute } from '@angular/router';
+import { PostCommentService } from '../../service/post-comment.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-post-comment',
@@ -9,44 +11,39 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./post-comment.component.scss']
 })
 export class PostCommentComponent implements OnInit {
-  post: any;
-  postId!: string;
   postlikes!: number;
   commentForm!: FormGroup;
-  error = '';
   submitted = false;
   isLiked!: boolean;
 
-  constructor(private displayPostService: DisplayPostsService, private router: ActivatedRoute, private formBuilder: FormBuilder) { }
+  firstName!: string;
+  lastName!: string;
+  content!: string;
+  imageUrl!: string;
+  postTitle!: string;
+
+  comments = [];
+
+  constructor(private displayPostService: DisplayPostsService, private formBuilder: FormBuilder, private postCommentService: PostCommentService, private matDialogRef: MatDialogRef<PostCommentComponent>, @Inject(MAT_DIALOG_DATA) public postId: any) { }
 
   ngOnInit(): void {
-    this.router.params.subscribe(params => {
-      this.postId = params['id'];
-    });
     this.displayPostService.getOnePost(this.postId).subscribe((d) => {
-      this.post = d.post;
-      console.log(this.post);
+      this.relatePostData(d);
     });
-    this.displayPostService.getLikes(this.postId).subscribe((likes) => {
-      this.postlikes = likes.likes;
+    this.postCommentService.getPostComment(this.postId).subscribe((d) => {
+      this.comments = d.comments;
     });
     this.commentForm = this.formBuilder.group({
       comment: ['', [Validators.required]],
     });
   }
 
-  postLike() {
-    if(!this.isLiked) {
-      this.displayPostService.addLike(this.post.id, 1).subscribe((d) => {
-        this.postlikes = d.count;
-        this.isLiked = d.alreadyLiked;
-      });
-    } else {
-      this.displayPostService.deleteLike(this.post.id).subscribe((d: any) => {
-        this.postlikes = d.count;
-        this.isLiked = d.alreadyLiked;
-      })
-    }
+  relatePostData(data: any) {
+    this.firstName = data.post.author.firstName;
+    this.lastName = data.post.author.lastName;
+    this.content = data.post.content;
+    this.imageUrl = data.post.imageUrl;
+    this.postTitle = data.post.title;
   }
 
   deleteLike() {
@@ -54,6 +51,6 @@ export class PostCommentComponent implements OnInit {
   }
 
   onSubmit() {
-    this.displayPostService.createComment(this.commentForm.controls['comment'].value, this.postId);
+    this.postCommentService.createComment(this.commentForm.controls['comment'].value, this.postId);
   }
 }
