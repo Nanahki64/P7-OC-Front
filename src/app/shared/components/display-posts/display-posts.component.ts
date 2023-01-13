@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DisplayPostsService } from '../../service/display-posts.service';
-import { ModifyingPostService } from '../../service/modifying-post.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,11 +17,12 @@ export class DisplayPostsComponent implements OnInit {
   isAdminOrAuthor: boolean = false;
   isLiked!: boolean;
   
-  constructor(private displayPostService: DisplayPostsService, private router: Router, private authService: AuthService, private matDialog: MatDialog, private modifyingPostService: ModifyingPostService) { }
+  constructor(private displayPostService: DisplayPostsService, private router: Router, private authService: AuthService, private matDialog: MatDialog) { }
   
   ngOnInit(): void {
     this.displayPostService.getLikes(this.post.id).subscribe((likes) => {
-      this.postlikes = likes.likes;
+      this.postlikes = likes.count;
+      this.isLiked = likes.alreadyLiked;
     });
     this.displayPostService.getPostComment(this.post.id).subscribe((d) => {
       this.postComment = d.count;
@@ -31,7 +31,7 @@ export class DisplayPostsComponent implements OnInit {
   }
   
   postLike() {
-    if(!this.isLiked) {
+    if(!this.isLiked) {     
       this.displayPostService.addLike(this.post.id, 1).subscribe((d) => {
         this.postlikes = d.count;
         this.isLiked = d.alreadyLiked;
@@ -66,7 +66,7 @@ export class DisplayPostsComponent implements OnInit {
   onOpenDialogClick() {
     this.matDialog.open(ModifyingPostComponent, {
       data: this.post.id,
-      height: '95%'
+      height: '90%'
     });
   }
 }
