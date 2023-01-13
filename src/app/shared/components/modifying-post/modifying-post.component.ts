@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModifyingPostService } from '../../service/modifying-post.service';
 import { DisplayPostsService } from '../../service/display-posts.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-modifying-post',
@@ -13,11 +15,11 @@ export class ModifyingPostComponent implements OnInit {
   
   submitted = false;
   error = '';
-  postId!: string;
   post: any;
   imageUrl!: string;
+  imageSubmitted: boolean = false;
   
-  constructor(private formBuilder: FormBuilder, private modifyingPostService: ModifyingPostService, private displayPostService: DisplayPostsService, private router: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder, private modifyingPostService: ModifyingPostService, private displayPostService: DisplayPostsService, private router: ActivatedRoute, private matDialogRef: MatDialogRef<ModifyingPostComponent>, @Inject(MAT_DIALOG_DATA) public postId: any) { }
   
   postForm: FormGroup = this.formBuilder.group({
     title: ['', [Validators.required]],
@@ -26,9 +28,6 @@ export class ModifyingPostComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.router.params.subscribe(params => {
-      this.postId = params['id'];
-    });
     this.displayPostService.getOnePost(this.postId).subscribe((data) => {
       this.relatePostData(data);
     });
@@ -47,6 +46,7 @@ export class ModifyingPostComponent implements OnInit {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
       this.postForm.get('image')?.setValue(file);
+      this.imageSubmitted = true;
     }
   }
   
@@ -58,10 +58,15 @@ export class ModifyingPostComponent implements OnInit {
     try {
       this.modifyingPostService.modifyPost(this.postForm, this.postId).subscribe(() => {
         this.displayPostService.sendDisplayPostUpdate();
+        this.onModalClose();
       });
     } catch {
       this.error = 'Une erreur est survenue.';
     }
+  }
+
+  onModalClose() {
+    this.matDialogRef.close();
   }
   
 }
