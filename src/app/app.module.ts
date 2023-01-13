@@ -13,6 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { LandingPageComponent } from './shared/components/landing-page/landing-page.component';
 import { CreatePostComponent } from './shared/components/create-post/create-post.component';
@@ -45,7 +46,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

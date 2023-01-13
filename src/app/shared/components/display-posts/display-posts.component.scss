@@ -1,0 +1,27 @@
+.body {
+    display: flex;
+    justify-content: center;
+}
+.head-post {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.post-card {
+    width: 29%;
+    height: 1%;
+    border-radius: 10px;
+    padding: 1em;
+    background-color: rgba(78, 81, 102, 0.08);
+    margin-bottom: 2em;
+}
+.box {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 60%;
+}
+.box img {
+    max-width: 100%;
+    max-height: 100%;
+}

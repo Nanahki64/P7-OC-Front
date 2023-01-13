@@ -1,21 +1,27 @@
 <app-header></app-header>
 <div class="body">
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.content }}</p>
+  <div class="head-post">
+    <h2>{{ post.author.firstName }}, {{ post.author.lastName }}</h2>
+  </div>
+  <p>{{ post.content }}</p>
+  <div class="box">
     <img src={{post.imageUrl}} alt="image">
-    <button type="button" (click)="postLike()">Likes: {{ postlikes }}</button>
-    <div class="form-container">
-        <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-          <div *ngIf="error">{{error}}</div>
-          <div>
-            <input formControlName="comment" class="form-control auth-control" id="comment" placeholder="comment">
-            <div *ngIf="submitted">
-              <p *ngIf="this.commentForm.controls['comment'].hasError('required')">Commentaire requis</p>
-            </div>
-          </div>
-          <div>
-            <button type="submit">Publier</button>
-          </div>
-        </form>
-    </div>
+  </div>
+  <h2>{{ post.title }}</h2>
+  <button type="button" (click)="postLike()">Likes: {{ postlikes }}</button>
+  <div class="form-container">
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="error">{{error}}</div>
+      <div>
+        <input formControlName="comment" class="form-control auth-control" id="comment" placeholder="comment">
+        <div *ngIf="submitted">
+          <p *ngIf="this.commentForm.controls['comment'].hasError('required')">Commentaire requis</p>
+        </div>
+      </div>
+      <div>
+        <button type="submit">Publier</button>
+      </div>
+    </form>
+  </div>
+  
 </div>
