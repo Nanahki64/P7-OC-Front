@@ -13,7 +13,9 @@
     border-radius: 10px;
     padding: 1em;
     background-color: rgba(78, 81, 102, 0.08);
-    margin-bottom: 2em;
+    border-bottom: 1px solid #4E5166;
+    box-shadow: 10px 2px 30px #4E5166;
+    margin: 2em 0 1em 0;
 }
 .box {
     display: flex;
@@ -24,4 +26,16 @@
 .box img {
     max-width: 100%;
     max-height: 100%;
+    border-radius: 10px;
+}
+.action-button {
+    display: flex;
+    justify-content: flex-end;
+}
+.like-button {
+    margin-right: 1em;
+}
+.icon-size {
+    margin-top: 15%;
+    font-size: 1.2em;
 }

@@ -23,7 +23,13 @@
             <img src={{post.imageUrl}} alt="image">
         </div>
         <h2>{{ post.title }}</h2>
-        <button type="button" (click)="postLike()">Likes: {{ postlikes }}</button>
-        <button type="button" (click)="createComment()">Comment: {{ postComment }}</button>
+        <div class="action-button">
+            <button mat-raised-button color="warn" type="button" (click)="postLike()" class="like-button">
+                <mat-icon class="icon-size">thumb_up</mat-icon> {{ postlikes }}
+            </button>
+            <button mat-raised-button color="warn" type="button" (click)="createComment()">
+                <mat-icon class="icon-size">comment</mat-icon> {{ postComment }}
+            </button>
+        </div>
     </div>
 </div>
