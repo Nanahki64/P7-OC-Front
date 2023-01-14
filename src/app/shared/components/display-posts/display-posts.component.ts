@@ -26,10 +26,15 @@ export class DisplayPostsComponent implements OnInit {
       this.postlikes = likes.count;
       this.isLiked = likes.alreadyLiked;
     });
-    this.postCommentService.getPostComment(this.post.id).subscribe((d) => {
-      this.postComment = d.count;
+    this.postCommentService.getPostComment(this.post.id).subscribe((comment) => {
+      this.postComment = comment.count;
     });
     this.isAdminOrIsAuthor();
+    this.postCommentService.receiveUpdateCommentNumber().subscribe(() => {
+      this.postCommentService.getPostComment(this.post.id).subscribe((comment) => {
+        this.postComment = comment.count;
+      });
+    });
   }
   
   postLike() {
@@ -68,14 +73,12 @@ export class DisplayPostsComponent implements OnInit {
   onOpenDialogClickModify() {
     this.matDialog.open(ModifyingPostComponent, {
       data: this.post.id,
-      height: '90%'
     });
   }
 
   onOpenDialogClickComment() {
     this.matDialog.open(PostCommentComponent, {
       data: this.post.id,
-      height: '90%'
     });
   }
 }

@@ -19,12 +19,12 @@
             </div>
         </div>
         <p>{{ post.content }}</p>
-        <div class="box">
+        <div class="box" *ngIf="post.imageUrl != ''">
             <img src={{post.imageUrl}} alt="image">
         </div>
         <h2>{{ post.title }}</h2>
         <div class="action-button">
-            <button mat-raised-button color="warn" type="button" (click)="postLike()" class="like-button">
+            <button [ngClass]="isLiked == true ? 'col-green' : ''" mat-raised-button color="warn" type="button" (click)="postLike()" class="like-button">
                 <mat-icon class="icon-size">thumb_up</mat-icon> {{ postlikes }}
             </button>
             <button mat-raised-button color="warn" type="button" (click)="onOpenDialogClickComment()">

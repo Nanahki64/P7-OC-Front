@@ -1,14 +1,5 @@
 <div class="comment-container">
-  
-  <div class="head-post">
-    <h2>{{ firstName }}, {{ lastName }}</h2>
-  </div>
-  <p>{{ content }}</p>
-  <div class="box">
-    <img src="{{ imageUrl }}" alt="image">
-  </div>
-  <h2>{{ postTitle }}</h2>
-  
+
   <div class="form-container">
     
     <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
@@ -17,7 +8,7 @@
         <mat-form-field appearance="fill" matNativeControl>
           <input matInput type="text" formControlName="comment" class="form-control auth-control" id="comment" placeholder="Commenter">
           <mat-error *ngIf="submitted">
-            <p *ngIf="this.commentForm.controls['comment'].hasError('required')">Commentaire requis</p>
+            <p *ngIf="this.commentForm.controls['comment'].hasError('required')">{{ error }}</p>
           </mat-error>
         </mat-form-field>
       </div>

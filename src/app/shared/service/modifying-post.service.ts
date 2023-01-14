@@ -15,6 +15,7 @@ export class ModifyingPostService {
     formdata.append('image' ,form.get('image')!.value);
     formdata.append('title', form.get('title')!.value);
     formdata.append('content', form.get('content')!.value);
+    formdata.append('delete', form.get('delete')!.value);
     
     return this.http.put<any>(this.modifyPostUrl + postId, formdata);
   }

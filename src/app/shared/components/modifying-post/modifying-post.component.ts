@@ -17,13 +17,15 @@ export class ModifyingPostComponent implements OnInit {
   post: any;
   imageUrl!: string;
   imageSubmitted: boolean = false;
-  
+  isChecked: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private modifyingPostService: ModifyingPostService, private displayPostService: DisplayPostsService, private matDialogRef: MatDialogRef<ModifyingPostComponent>, @Inject(MAT_DIALOG_DATA) public postId: any) { }
   
   postForm: FormGroup = this.formBuilder.group({
     title: ['', [Validators.required]],
     content: ['', [Validators.required]],
     image: [''],
+    delete: ['']
   });
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class ModifyingPostComponent implements OnInit {
       title: [data.post.title, [Validators.required]],
       content: [data.post.content, [Validators.required]],
       image: [data.post.imageUrl],
+      delete: ['']
     });
   }
   
@@ -47,6 +50,10 @@ export class ModifyingPostComponent implements OnInit {
       this.postForm.get('image')?.setValue(file);
       this.imageSubmitted = true;
     }
+  }
+
+  onChange(e: any) {
+    this.postForm.get('delete')?.setValue(e.checked);
   }
   
   onSubmit() {

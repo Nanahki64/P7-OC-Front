@@ -11,25 +11,14 @@ import { Inject } from '@angular/core';
   styleUrls: ['./post-comment.component.scss']
 })
 export class PostCommentComponent implements OnInit {
-  postlikes!: number;
   commentForm!: FormGroup;
-  submitted = false;
-  isLiked!: boolean;
-
-  firstName!: string;
-  lastName!: string;
-  content!: string;
-  imageUrl!: string;
-  postTitle!: string;
-
   comments = [];
+  submitted = false;
+  error!: string;
 
   constructor(private displayPostService: DisplayPostsService, private formBuilder: FormBuilder, private postCommentService: PostCommentService, private matDialogRef: MatDialogRef<PostCommentComponent>, @Inject(MAT_DIALOG_DATA) public postId: any) { }
 
   ngOnInit(): void {
-    this.displayPostService.getOnePost(this.postId).subscribe((d) => {
-      this.relatePostData(d);
-    });
     this.postCommentService.getPostComment(this.postId).subscribe((d) => {
       this.comments = d.comments;
     });
@@ -38,19 +27,22 @@ export class PostCommentComponent implements OnInit {
     });
   }
 
-  relatePostData(data: any) {
-    this.firstName = data.post.author.firstName;
-    this.lastName = data.post.author.lastName;
-    this.content = data.post.content;
-    this.imageUrl = data.post.imageUrl;
-    this.postTitle = data.post.title;
-  }
-
   deleteLike() {
     this.displayPostService.deleteLike(this.postId);
   }
 
   onSubmit() {
-    this.postCommentService.createComment(this.commentForm.controls['comment'].value, this.postId);
+    this.submitted = true;
+    if(this.commentForm.invalid) {
+      this.error = 'Commentaire requis';
+    } else {
+      this.postCommentService.createComment(this.commentForm.controls['comment'].value, this.postId).subscribe(() => {
+        this.postCommentService.getPostComment(this.postId).subscribe((d) => {
+          this.comments = d.comments;
+          this.postCommentService.sendUpdateCommentNumber();
+        });
+      });
+
+    }
   }
 }

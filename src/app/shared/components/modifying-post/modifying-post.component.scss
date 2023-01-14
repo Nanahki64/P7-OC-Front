@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     max-width: min-content;
+    max-height: 30em;
 }
 .form-card-title {
     margin-top: 0;
@@ -23,17 +24,30 @@ mat-form-field {
 .form-action {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .box {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 60%;
+    max-height: 20%;
+    margin-bottom: 1em;
 }
 .box img {
     max-width: 100%;
     max-height: 80%;
     border-radius: 10px;
+    object-fit: cover;
+}
+.image-action {
+    display: flex;
+    align-items: center;
+}
+.image-button {
+    margin-right: 0.5em;
+}
+.delete-image-button {
+    margin-left: 1em;
 }
 .publish-button {
     margin-right: 1em;
