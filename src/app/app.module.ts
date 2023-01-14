@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,10 @@ import { PostCommentComponent } from './shared/components/post-comment/post-comm
 import { ModifyingPostComponent } from './shared/components/modifying-post/modifying-post.component';
 import { CreatePostDialogComponent } from './shared/components/create-post-dialog/create-post-dialog.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -51,7 +55,9 @@ import { HeaderComponent } from './shared/components/header/header.component';
     MatMenuModule,
     MatCheckboxModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

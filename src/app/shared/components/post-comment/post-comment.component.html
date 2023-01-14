@@ -21,10 +21,14 @@
     
   </div>
 
-  <div *ngFor="let item of comments">
-    <p>{{ item['comment'] }}</p>
-    <p>{{ item['author']['firstName'] }}</p>
-    <p>{{ item['author']['lastName'] }}</p>
+  <div *ngFor="let item of comments" class="comments">
+    <div class="author-created">
+      <p><strong>{{ item['author']['firstName'] }}, {{ item['author']['lastName'] }}</strong></p>
+      <p>{{ item['createdAt'] | date:'mediumDate' }}</p>
+    </div>
+    <div>
+      <p>{{ item['comment'] }}</p>
+    </div>
   </div>
   
 </div>

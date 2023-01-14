@@ -26,3 +26,11 @@ mat-form-field {
     display: flex;
     justify-content: flex-end;
 }
+.comments {
+    display: flex;
+    flex-direction: column;
+}
+.author-created {
+    display: flex;
+    justify-content: space-between;
+}
