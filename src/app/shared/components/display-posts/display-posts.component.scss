@@ -2,6 +2,9 @@
     display: flex;
     justify-content: center;
 }
+mat-form-field {
+    width: 100vw;
+}
 .head-post {
     display: flex;
     align-items: center;
@@ -9,7 +12,8 @@
 }
 .post-card {
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
+    min-width: 29%;
     max-width: 29%;
     height: 1%;
     border-radius: 10px;

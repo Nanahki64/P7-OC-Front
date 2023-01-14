@@ -10,6 +10,7 @@ export class PostCommentService {
 
   private getPostCommentUrl = environment.apiUrl + '/api/comment/post';
   private createCommentUrl = environment.apiUrl + '/api/comment/';
+  private deletePostCommentUrl = environment.apiUrl + '/api/comment/';
 
   private updateCommentNumber = new Subject<boolean>();
 
@@ -26,6 +27,10 @@ export class PostCommentService {
       comment: comment,
       id: postId,
     });
+  }
+
+  deleteComment(commentId: string) {
+    return this.http.delete(this.deletePostCommentUrl + commentId);
   }
 
   sendUpdateCommentNumber() {

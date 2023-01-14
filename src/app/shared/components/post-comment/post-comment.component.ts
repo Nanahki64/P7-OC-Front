@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DisplayPostsService } from '../../service/display-posts.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { PostCommentService } from '../../service/post-comment.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -15,8 +15,10 @@ export class PostCommentComponent implements OnInit {
   comments = [];
   submitted = false;
   error!: string;
+  userId: any;
+  role: any;
 
-  constructor(private displayPostService: DisplayPostsService, private formBuilder: FormBuilder, private postCommentService: PostCommentService, private matDialogRef: MatDialogRef<PostCommentComponent>, @Inject(MAT_DIALOG_DATA) public postId: any) { }
+  constructor(private formBuilder: FormBuilder, private postCommentService: PostCommentService, private matDialogRef: MatDialogRef<PostCommentComponent>, @Inject(MAT_DIALOG_DATA) public postId: any, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.postCommentService.getPostComment(this.postId).subscribe((d) => {
@@ -25,10 +27,19 @@ export class PostCommentComponent implements OnInit {
     this.commentForm = this.formBuilder.group({
       comment: ['', [Validators.required]],
     });
+    this.userId = this.authService.getUserId();
+    this.role = this.authService.getRole();
   }
 
-  deleteLike() {
-    this.displayPostService.deleteLike(this.postId);
+  deleteComment(authorId: string, commentId: string) {
+    if(authorId == this.userId || this.role) {
+      this.postCommentService.deleteComment(commentId).subscribe(() => {
+        this.postCommentService.getPostComment(this.postId).subscribe((d) => {
+          this.comments = d.comments;
+          this.postCommentService.sendUpdateCommentNumber();
+        });
+      });
+    }
   }
 
   onSubmit() {
@@ -42,7 +53,6 @@ export class PostCommentComponent implements OnInit {
           this.postCommentService.sendUpdateCommentNumber();
         });
       });
-
     }
   }
 }

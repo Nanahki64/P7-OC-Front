@@ -21,13 +21,18 @@
     
   </div>
 
-  <div *ngFor="let item of comments" class="comments">
+  <div *ngFor="let comment of comments" class="comments">
+    <div *ngIf="comment['authorId'] == userId || role == 'true'" class="delete-comment">
+      <button class="delete-comment-button" (click)="deleteComment(comment['authorId'], comment['id'])">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
     <div class="author-created">
-      <p><strong>{{ item['author']['firstName'] }}, {{ item['author']['lastName'] }}</strong></p>
-      <p>{{ item['createdAt'] | date:'mediumDate' }}</p>
+      <p><strong>{{ comment['author']['firstName'] }}, {{ comment['author']['lastName'] }}</strong></p>
+      <p>{{ comment['createdAt'] | date:'mediumDate' }}</p>
     </div>
     <div>
-      <p>{{ item['comment'] }}</p>
+      <p>{{ comment['comment'] }}</p>
     </div>
   </div>
   
