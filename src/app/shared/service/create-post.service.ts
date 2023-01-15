@@ -7,10 +7,15 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class CreatePostService {
+  
+  // déclaration des routes du backend.
   private createPostUrl = environment.apiUrl + '/api/post';
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Permet de créer un post.
+   */
   createPost(form: FormGroup) {
     let formdata = new FormData();
     formdata.append('image' ,form.get('image')!.value);

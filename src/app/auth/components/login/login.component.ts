@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Permet d'envoyer le formulaire au back ou de renvoyer une erreur.
+   */
   onSubmit() {
     this.submitted = true;
     try {

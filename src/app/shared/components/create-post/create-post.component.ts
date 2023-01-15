@@ -19,6 +19,7 @@ export class CreatePostComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private createPostService: CreatePostService, private displayPostService: DisplayPostsService, private matDialogRef: MatDialogRef<CreatePostComponent>) { }
 
   ngOnInit(): void {
+    // initialisation du formulaire postForm.
     this.postForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       content: ['', [Validators.required]],
@@ -26,6 +27,9 @@ export class CreatePostComponent implements OnInit {
     });
   }
 
+  /**
+   * Permet de choisir une image et de passer la valeur à postForm.
+   */
   onFileSelect(e: any) {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -34,6 +38,9 @@ export class CreatePostComponent implements OnInit {
     }
   }
 
+  /**
+   * Permet d'envoyer le formulaire au back ou de renvoyer une erreur.
+   */
   onSubmit() {
     this.submitted = true;
     if(this.postForm.invalid) {
@@ -49,6 +56,9 @@ export class CreatePostComponent implements OnInit {
     }
   }
 
+  /**
+   * Permet de fermer la fenêtre modal.
+   */
   onModalClose() {
     this.matDialogRef.close();
   }

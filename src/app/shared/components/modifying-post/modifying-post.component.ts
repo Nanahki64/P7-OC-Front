@@ -21,6 +21,7 @@ export class ModifyingPostComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private modifyingPostService: ModifyingPostService, private displayPostService: DisplayPostsService, private matDialogRef: MatDialogRef<ModifyingPostComponent>, @Inject(MAT_DIALOG_DATA) public postId: any) { }
   
+  // Initialisation du formulaire postForm.
   postForm: FormGroup = this.formBuilder.group({
     title: ['', [Validators.required]],
     content: ['', [Validators.required]],
@@ -29,21 +30,28 @@ export class ModifyingPostComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.displayPostService.getOnePost(this.postId).subscribe((data) => {
-      this.relatePostData(data);
+    // Permet de récupérer les données d'un post.
+    this.displayPostService.getOnePost(this.postId).subscribe((postData) => {
+      this.relatePostData(postData);
     });
   }
 
-  relatePostData(data: any) {
-    this.imageUrl = data.post.imageUrl;
+  /**
+   * Permet d'afficher les données du post dans le formulaire.
+   */
+  relatePostData(postData: any) {
+    this.imageUrl = postData.post.imageUrl;
     this.postForm = this.formBuilder.group({
-      title: [data.post.title, [Validators.required]],
-      content: [data.post.content, [Validators.required]],
-      image: [data.post.imageUrl],
+      title: [postData.post.title, [Validators.required]],
+      content: [postData.post.content, [Validators.required]],
+      image: [postData.post.imageUrl],
       delete: ['']
     });
   }
   
+  /**
+   * Permet de choisir une image et de passer la valeur à postForm.
+   */
   onFileSelect(e: any) {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -52,10 +60,16 @@ export class ModifyingPostComponent implements OnInit {
     }
   }
 
+  /**
+   * Écoute le changement d'état de la checkbox et donne la valeur au formulaire.
+   */
   onChange(e: any) {
     this.postForm.get('delete')?.setValue(e.checked);
   }
   
+  /**
+   * Permet d'envoyer le formulaire au back ou de renvoyer une erreur.
+   */
   onSubmit() {
     this.submitted = true;
     if(this.postForm.invalid) {
@@ -71,6 +85,9 @@ export class ModifyingPostComponent implements OnInit {
     }
   }
 
+  /**
+   * Permet de fermer la fenêtre modal.
+   */
   onModalClose() {
     this.matDialogRef.close();
   }

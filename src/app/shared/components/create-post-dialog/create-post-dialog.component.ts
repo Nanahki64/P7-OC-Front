@@ -14,6 +14,9 @@ export class CreatePostDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Permet d'ouvrir la modal pour créer un post.
+   */
   onOpenDialogClick() {
     this.matDialog.open(CreatePostComponent);
   }

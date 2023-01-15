@@ -13,7 +13,7 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
   error = '';
-  hide = true;
+
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -25,6 +25,9 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  /**
+   * Permet d'envoyer le formulaire au back ou de renvoyer une erreur.
+   */
   onSubmit() {
     this.submitted = true;
     try {

@@ -7,9 +7,15 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class ModifyingPostService {
+  
+  // déclaration des routes du backend.
   private modifyPostUrl = environment.apiUrl + '/api/post/'; 
 
   constructor(private http: HttpClient) { }
+  
+  /**
+   * Permet de modifier un post.
+   */
   modifyPost(form: FormGroup, postId: string) {
     let formdata = new FormData();
     formdata.append('image' ,form.get('image')!.value);

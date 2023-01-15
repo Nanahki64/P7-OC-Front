@@ -14,10 +14,16 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Permet de retourner à la page d'acceuil.
+   */
   onGreeting() {
     this.router.navigateByUrl('landing-page');
   }
 
+  /**
+   * Permet de déconnecter l'utilisateur.
+   */
   onLogout() {
     this.router.navigateByUrl('');
     this.authService.logout();
