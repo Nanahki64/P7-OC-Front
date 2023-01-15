@@ -2,14 +2,6 @@
     display: flex;
     justify-content: center;
 }
-mat-form-field {
-    width: 100vw;
-}
-.head-post {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 .post-card {
     display: flex;
     flex-flow: column nowrap;
@@ -22,6 +14,17 @@ mat-form-field {
     border-bottom: 1px solid #4E5166;
     box-shadow: 10px 2px 30px #4E5166;
     margin: 2em 0 1em 0;
+}
+.head-post {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.post-date {
+    margin: 0 0 2em 0;
+}
+.post-content {
+    margin-bottom: 1em;
 }
 .box {
     display: flex;

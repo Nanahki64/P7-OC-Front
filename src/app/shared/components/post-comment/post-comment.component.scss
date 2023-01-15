@@ -4,6 +4,10 @@
     max-width: min-content;
     max-height: 30em;
 }
+.form-card-title {
+    margin-top: 0;
+    text-align: center;
+}
 .box {
     display: flex;
     justify-content: center;
@@ -47,6 +51,7 @@ mat-form-field {
 .author-created {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1em;
 }
 
 @media screen and (max-width: 1800px) {

@@ -34,6 +34,12 @@ $front-theme: mat.define-light-theme((
 @include mat.all-component-themes($front-theme);
 
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Lato', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap'); 
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Lato', sans-serif; }
+h1 { font-size: 1.2em; }
+p { margin: 0; }

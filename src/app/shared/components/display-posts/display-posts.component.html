@@ -1,7 +1,7 @@
 <div class="body">
     <div class="post-card">
         <div class="head-post">
-            <h2>{{ post.author.firstName }}, {{ post.author.lastName }}</h2>
+            <h1>{{ post.author.firstName }}, {{ post.author.lastName }}</h1>
             <div *ngIf="isAdminOrAuthor">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                     <mat-icon>more_horiz</mat-icon>
@@ -18,7 +18,10 @@
                 </mat-menu>
             </div>
         </div>
-        <p>{{ post.content }}</p>
+        <p class="post-date">{{ post.createdAt | date:'mediumDate' }}</p>
+        <div class="post-content">
+            <p>{{ post.content }}</p>
+        </div>
         <div class="box" *ngIf="post.imageUrl != ''">
             <img src={{post.imageUrl}} alt="image">
         </div>
