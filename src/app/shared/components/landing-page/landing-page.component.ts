@@ -26,7 +26,6 @@ export class LandingPageComponent implements OnInit {
     this.displayPostService.receiveDeletePostUpdate().subscribe((displayPostToUpdate) => {
       this.displayPostService.deletePost(displayPostToUpdate).subscribe(() => {
         this.displayPostService.getPosts().subscribe((post) => {
-          console.log('this',this.posts, 'post',post.posts);
           this.posts = post.posts;
         });
       });
