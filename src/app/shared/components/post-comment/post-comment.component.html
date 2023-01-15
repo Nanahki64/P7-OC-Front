@@ -24,7 +24,7 @@
   </div>
 
   <div *ngFor="let comment of comments" class="comments">
-    <div *ngIf="comment['authorId'] == userId || role == 'true'" class="delete-comment">
+    <div *ngIf="comment['authorId'] == userId || role == true" class="delete-comment">
       <button class="delete-comment-button" (click)="deleteComment(comment['authorId'], comment['id'])">
         <mat-icon>clear</mat-icon>
       </button>
