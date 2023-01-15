@@ -27,23 +27,23 @@
     </div>
     
     <div class="form-action">
-
-      <div class="image-action">
+      
+      <div class="image-button-container">
         <button class="image-button" type="button" mat-icon-button matPrefix (click)="f_input.click()">
           <mat-icon [ngClass]="imageSubmitted == true ? 'col-green' : 'col-black'">add_photo_alternate</mat-icon>
         </button>
-        <p>Modifier l'image</p>
         <input type="file" hidden #f_input (change)="onFileSelect($event)"/>
-        
-        <mat-checkbox class="delete-image-button" (change)="onChange($event)">Supprimer l'image.</mat-checkbox>
-
       </div>
       
-      <div>
+      <div class="delete-image-container">
+        <mat-checkbox class="delete-image-button" (change)="onChange($event)">Supprimer l'image.</mat-checkbox>
+      </div>
+      
+      <div class="action-button">
         <button class="publish-button" mat-raised-button color="warn" type="submit">Publier</button>
         <button mat-raised-button color="warn" type="button" (click)="onModalClose()">Annuler</button>
       </div>
-
+      
     </div>
     
   </form>

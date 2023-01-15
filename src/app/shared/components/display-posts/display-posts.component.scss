@@ -48,3 +48,21 @@ mat-form-field {
     margin-top: 15%;
     font-size: 1.2em;
 }
+
+@media screen and (max-width: 1800px) {
+    .post-card {
+        min-width: 504px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .post-card {
+        min-width: 346px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .post-card {
+        min-width: 281px;
+    }
+}

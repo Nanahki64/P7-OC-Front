@@ -9,3 +9,21 @@ mat-form-field {
 .add-icon {
     cursor: pointer;
 }
+
+@media screen and (max-width: 1800px) {
+    mat-form-field {
+        width: 544px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    mat-form-field {
+        width: 377px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    mat-form-field {
+        width: 312px;
+    }
+}

@@ -48,3 +48,21 @@ mat-form-field {
     display: flex;
     justify-content: space-between;
 }
+
+@media screen and (max-width: 1800px) {
+    mat-form-field {
+        width: 486px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    mat-form-field {
+        width: 329px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    mat-form-field {
+        width: 256px;
+    }
+}

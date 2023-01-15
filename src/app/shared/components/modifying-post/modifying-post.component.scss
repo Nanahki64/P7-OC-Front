@@ -39,10 +39,6 @@ mat-form-field {
     border-radius: 10px;
     object-fit: cover;
 }
-.image-action {
-    display: flex;
-    align-items: center;
-}
 .image-button {
     margin-right: 0.5em;
 }
@@ -60,4 +56,42 @@ mat-form-field {
 }
 .col-black {
     color: black;
+}
+
+@media screen and (max-width: 1800px) {
+    mat-form-field {
+        width: 488px;
+    }
+    .form-action {
+        justify-content: center;
+        flex-direction: column;
+    }
+    .image-button-container {
+        margin-bottom: 1em;
+    }
+    .image-action {
+        flex-flow: column wrap;
+        align-items: center;
+    }
+    .publish-button {
+        right: 0;
+    }
+    .modify-action {
+        flex-direction: column;
+    }
+    .action-button {
+        margin: 1em 0 1em 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    mat-form-field {
+        width: 328px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    mat-form-field {
+        width: 220px;
+    }
 }
