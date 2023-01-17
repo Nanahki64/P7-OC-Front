@@ -30,12 +30,14 @@ export class SignupComponent implements OnInit {
    */
   onSubmit() {
     this.submitted = true;
-    try {
-      this.authService.signup(this.signupForm).subscribe(() => {
-        this.router.navigateByUrl('');
-      });
-    } catch {
-      this.error = 'Une erreur est survenue.';
+    if(this.signupForm.valid) {
+      try {
+        this.authService.signup(this.signupForm).subscribe(() => {
+          this.router.navigateByUrl('');
+        });
+      } catch {
+        this.error = 'Une erreur est survenue.';
+      }
     }
   }
 

@@ -28,13 +28,15 @@ export class LoginComponent implements OnInit {
    */
   onSubmit() {
     this.submitted = true;
-    try {
-      this.authService.login(this.loginForm).subscribe((dataUserLogInfo) => {
-        this.authService.getUserLogInfo(dataUserLogInfo);
-        this.router.navigateByUrl('landing-page');
-      });
-    } catch {
-      this.error = 'Une erreur est survenue.';
+    if(this.loginForm.valid) {
+      try {
+        this.authService.login(this.loginForm).subscribe((dataUserLogInfo) => {
+          this.authService.getUserLogInfo(dataUserLogInfo);
+          this.router.navigateByUrl('landing-page');
+        });
+      } catch {
+        this.error = 'Une erreur est survenue.';
+      }
     }
   }
 }
